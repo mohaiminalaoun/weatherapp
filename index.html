@@ -100,6 +100,30 @@
 		document.getElementsByTagName('head')[0].appendChild(script_element);
 	}
 
+	function jsonFlickrApi(data){
+		if (data.photos.pages > 0){
+    	// If there are pictures for our weather and location, we will show one of them.
+  		}
+  		else{
+    	// Otherwise load a random background.
+  		}
+  	}
+
+  	function jsonFlickrApi(data){
+  		if (data.photos.pages > 0){
+  	 		var photo = data.photos.photo[0];
+    		document.querySelector("body").style.backgroundImage = "url('" + photo.url_l + "')";
+    		document.querySelector("#image-source").setAttribute("href", "http://www.flickr.com/photos/" + photo.owner + "/" + photo.id);
+  		}
+  		else{
+  			document.querySelector("body").style.backgroundImage = "url('https://fourtonfish.com/tutorials/weather-web-app/images/default.jpg')";
+    		document.querySelector("#image-source").setAttribute("href", "https://www.flickr.com/photos/superfamous/310185523/sizes/o/");
+    	}
+	}
+
+	getLocationAndWeather();
+}
+
 </script>
 
 
