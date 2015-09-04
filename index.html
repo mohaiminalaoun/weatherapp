@@ -28,21 +28,21 @@
 
 <script>
 
-	var weatherdata= {
+	var weatherData= {
 		city: document.querySelector("#city"),
 		weather: document.querySelector("#weather"),
 		temperature: document.querySelector("#temperature"),
-		temperatureValue: 0;
-		units: "°C",
+		temperatureValue: 0,
+		units: "°C"
 	}
 
 	function switchUnits(){
 		if (weatherData.units=="°C"){
-			weatherData.temperatureValue=roundTemperature(weatherData.temperatureValue * 9/5 + 32);
+			weatherData.temperatureValue=Math.round(weatherData.temperatureValue * 9/5 + 32);
 			weatherData.units="°F";
 		}
 		else{
-			weatherData.temperatureValue= roundTemperature((weatherData.temperatureValue - 32)* 5/9);
+			weatherData.temperatureValue= Math.round((weatherData.temperatureValue - 32)* 5/9);
 			weatherData.units="°C";
 		}
 
@@ -68,15 +68,17 @@
 
 				var weatherSimpleDescription = response.weather.description;
 
-				var weatherTemperature = roundTemperature(response.weather.temperature);
+				var weatherDescription = response.weather.description;
+
+				var weatherTemperature = Math.round(response.weather.temperature);
 
 				loadBackground(position.latitude, position.longitude, weatherSimpleDescription);
 
 				weatherData.city.innerHTML = cityName;
 
-				weatherData.weather.innerHTML =  ", " + weatherDescription;
+				weatherData.weather.innerHTML =  " " + weatherDescription;
 
-				weatherData.temperature.innerHTML = weatherTemperature + weatherData.units},false);
+				weatherData.temperature.innerHTML = weatherTemperature + weatherData.units;},false);
 
 			xhr.addEventListener("error", function(err){
 				alert("Could not complete the request.");
@@ -89,13 +91,13 @@
 
 		else alert("Unable to fetch weather and location");
 			
-		}
+		
 	}
 
 	function loadBackground(lat, lon, weatherTag) {
 		var script_element = document.createElement('script');
 
-		script_element.src = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=MYFLICKRAPIKEY&lat=" + lat + "&lon=" + lon + "&accuracy=1&tags=" + weatherTag + "&sort=relevance&extras=url_l&format=json";
+		script_element.src = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=MOHAIMINSAPIKEY=" + lat + "&lon=" + lon + "&accuracy=1&tags=" + weatherTag + "&sort=relevance&extras=url_l&format=json";
 
 		document.getElementsByTagName('head')[0].appendChild(script_element);
 	}
@@ -122,7 +124,7 @@
 	}
 
 	getLocationAndWeather();
-}
+
 
 </script>
 
